@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Você é nosso convidado especial ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f4e4a8;
+            --gold-dark: #a8841f;
+            --rose: #e8b4b8;
+            --rose-dark: #c98b90;
+            --dark: #1a1626;
+            --darker: #0d0a14;
+            --purple: #2d2440;
+            --purple-light: #4a3d68;
+            --cream: #fdf8f0;
+            --green: #25d366;
+            --green-dark: #128c7e;
+            --text-light: #f5f0e8;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--darker);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-80px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(80px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 30px rgba(212, 175, 55, 0); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+
+        /* ===== PARTÍCULAS DE FUNDO ===== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .sparkle-icon {
+            position: absolute;
+            animation: twinkle 4s infinite;
+            font-size: 1.5rem;
+            pointer-events: none;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 5%;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(232, 180, 184, 0.15) 0%, transparent 50%),
+                linear-gradient(180deg, var(--darker) 0%, var(--dark) 50%, var(--darker) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, var(--gold), transparent),
+                radial-gradient(2px 2px at 60% 70%, var(--gold-light), transparent),
+                radial-gradient(1px 1px at 50% 50%, var(--gold), transparent),
+                radial-gradient(1px 1px at 80% 10%, var(--gold-light), transparent),
+                radial-gradient(2px 2px at 90% 60%, var(--gold), transparent),
+                radial-gradient(1px 1px at 33% 80%, var(--gold-light), transparent);
+            background-size: 200% 200%;
+            background-position: 0% 0%;
+            animation: fadeIn 2s ease-out, shine 20s linear infinite;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 28px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(232, 180, 184, 0.2));
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            animation: fadeInDown 1s ease-out 0.2s both;
+        }
+
+        .hero-ornament {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 15px;
+            animation: fadeInDown 1s ease-out 0.3s both;
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 6rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--rose));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 1s ease-out 0.4s both, shine 5s linear infinite;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .hero-divider::before,
+        .hero-divider::after {
+            content: '';
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .hero-divider .diamond {
+            color: var(--gold);
+            font-size: 1.2rem;
+            animation: rotate 10s linear infinite;
+        }
+
+        .hero-info {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .hero-info-item {
+            text-align: center;
+        }
+
+        .hero-info-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hero-info-item .label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .hero-info-item .value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .hero-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .countdown-item {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 20px 25px;
+            border-radius: 15px;
+            min-width: 100px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.4s;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--darker);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--darker);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ===== SEÇÃO DETALHES ===== */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-dark {
+            background: var(--dark);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .section-header h2 .highlight {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header .vibes {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--rose);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .section-divider .line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .section-divider .symbol {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        /* ===== DETALHES EVENTO ===== */
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .detail-card {
+            background: linear-gradient(145deg, rgba(45, 36, 64, 0.6), rgba(26, 22, 38, 0.8));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.5s;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .detail-card:hover::before {
+            opacity: 1;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+        }
+
+        .detail-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+
+        .detail-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .detail-card p {
+            color: var(--text-light);
+            opacity: 0.8;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .detail-card .big-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin: 10px 0;
+        }
+
+        /* ===== RSVP FORM ===== */
+        .rsvp-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(45, 36, 64, 0.9), rgba(26, 22, 38, 0.95));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 25px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .rsvp-container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(245, 240, 232, 0.3);
+        }
+
+        .form-group select option {
+            background: var(--dark);
+            color: var(--text-light);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .attendance-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .attendance-option {
+            padding: 20px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .attendance-option:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .attendance-option.selected {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(232, 180, 184, 0.1));
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .attendance-option .emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .attendance-option .label {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .attendance-option .sub {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        .btn-submit-rsvp {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--darker);
+            border: none;
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-submit-rsvp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-submit-rsvp:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== CONTADOR DE CONFIRMADOS ===== */
+        .confirmation-counter {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .counter-box {
+            background: linear-gradient(145deg, rgba(45, 36, 64, 0.8), rgba(26, 22, 38, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 30px 40px;
+            text-align: center;
+            min-width: 180px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .counter-box .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .counter-box .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .counter-box .label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        /* ===== GALERIA / MOMENTOS ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(180deg, transparent, rgba(13, 10, 20, 0.9));
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 2;
+            color: var(--gold-light);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* ===== PAINEL ADMIN ===== */
+        .admin-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--darker);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            z-index: 998;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.7);
+        }
+
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -550px;
+            width: 520px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--dark), var(--darker));
+            z-index: 1000;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .admin-panel.open {
+            right: 0;
+        }
+
+        .admin-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .admin-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .admin-close:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .admin-stat {
+            padding: 20px;
+            background: var(--dark);
+            text-align: center;
+        }
+
+        .admin-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .admin-stat .lbl {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        .admin-actions {
+            padding: 20px 30px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .admin-btn {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+
+        .admin-btn-excel {
+            background: linear-gradient(135deg, #217346, #185c37);
+            color: white;
+        }
+
+        .admin-btn-excel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(33, 115, 70, 0.4);
+        }
+
+        .admin-btn-clear {
+            background: rgba(255, 82, 82, 0.2);
+            color: #ff5252;
+            border: 1px solid rgba(255, 82, 82, 0.4);
+        }
+
+        .admin-btn-clear:hover {
+            background: rgba(255, 82, 82, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .admin-search {
+            padding: 15px 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .admin-search input {
+            width: 100%;
+            padding: 12px 18px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .admin-search input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .admin-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 30px;
+        }
+
+        .guest-card {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .guest-card:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.08);
+            transform: translateX(-5px);
+        }
+
+        .guest-card.confirmed {
+            border-left: 4px solid var(--green);
+        }
+
+        .guest-card.declined {
+            border-left: 4px solid #ff5252;
+            opacity: 0.7;
+        }
+
+        .guest-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .guest-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        .guest-status {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .guest-status.confirmed {
+            background: rgba(37, 211, 102, 0.2);
+            color: var(--green);
+            border: 1px solid rgba(37, 211, 102, 0.4);
+        }
+
+        .guest-status.declined {
+            background: rgba(255, 82, 82, 0.2);
+            color: #ff5252;
+            border: 1px solid rgba(255, 82, 82, 0.4);
+        }
+
+        .guest-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            opacity: 0.75;
+            margin-bottom: 12px;
+        }
+
+        .guest-info span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guest-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .guest-action-btn {
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .btn-wpp-guest {
+            background: rgba(37, 211, 102, 0.15);
+            color: var(--green);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-wpp-guest:hover {
+            background: var(--green);
+            color: white;
+        }
+
+        .btn-delete-guest {
+            background: rgba(255, 82, 82, 0.15);
+            color: #ff5252;
+            border: 1px solid rgba(255, 82, 82, 0.3);
+        }
+
+        .btn-delete-guest:hover {
+            background: #ff5252;
+            color: white;
+        }
+
+        .admin-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+            opacity: 0.5;
+        }
+
+        .admin-empty .emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+            backdrop-filter: blur(5px);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ===== MODAL SUCESSO ===== */
+        .success-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            width: 90%;
+            max-width: 500px;
+            background: linear-gradient(145deg, var(--dark), var(--darker));
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 25px;
+            padding: 50px 40px;
+            z-index: 1001;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+        }
+
+        .success-modal.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .success-modal .success-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 20px;
+            animation: heart-beat 1.5s infinite;
+        }
+
+        .success-modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .success-modal p {
+            color: var(--text-light);
+            opacity: 0.8;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .success-modal .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            padding: 18px 30px;
+            border-radius: 15px;
+            font-weight: 600;
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+            transform: translateX(300%);
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 350px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 60px 5% 30px;
+            background: var(--darker);
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            text-align: center;
+        }
+
+        footer .footer-ornament {
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            color: var(--text-light);
+            opacity: 0.5;
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        footer .heart {
+            color: var(--rose);
+            animation: heart-beat 1.5s infinite;
+            display: inline-block;
+        }
+
+        /* ===== CONFETES ===== */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            z-index: 1003;
+            pointer-events: none;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 4rem; }
+            .hero-subtitle { font-size: 1.5rem; letter-spacing: 2px; }
+            .admin-panel { width: 100%; right: -100%; }
+            .rsvp-container { padding: 35px 25px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .section-header h2 { font-size: 2rem; }
+            .hero-info { gap: 30px; }
+            .countdown-item { padding: 15px 18px; min-width: 80px; }
+            .countdown-number { font-size: 1.8rem; }
+            .attendance-options { grid-template-columns: 1fr; }
+            .admin-actions { flex-direction: column; }
+            .counter-box { min-width: 140px; padding: 20px 25px; }
+            .counter-box .number { font-size: 2rem; }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--darker); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PARTÍCULAS DE FUNDO -->
+    <div class="particles" id="particles"></div>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">✨ Convite Exclusivo ✨</div>
+            <div class="hero-ornament">❋ ❋ ❋</div>
+            <h1>Você é nosso convidado</h1>
+            <p class="hero-subtitle">Uma Noite Inesquecível</p>
+            
+            <div class="hero-divider">
+                <span class="diamond">◆</span>
+            </div>
+
+            <div class="hero-info">
+                <div class="hero-info-item">
+                    <span class="icon">📅</span>
+                    <div class="label">Data</div>
+                    <div class="value" id="eventDate">20 de Dezembro, 2025</div>
+                </div>
+                <div class="hero-info-item">
+                    <span class="icon">🕐</span>
+                    <div class="label">Horário</div>
+                    <div class="value" id="eventTime">20:00h</div>
+                </div>
+                <div class="hero-info-item">
+                    <span class="icon">📍</span>
+                    <div class="label">Local</div>
+                    <div class="value" id="eventLocation">Salão Diamante</div>
+                </div>
+            </div>
+
+            <!-- COUNTDOWN -->
+            <div class="hero-countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Dias</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#confirmar" class="btn btn-gold">
+                    💌 Confirmar Presença
+                </a>
+                <a href="#detalhes" class="btn btn-outline">
+                    📖 Ver Detalhes
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETALHES DO EVENTO -->
+    <section class="section section-dark" id="detalhes">
+        <div class="section-header">
+            <span class="vibes">Detalhes</span>
+            <h2>Sobre o <span class="highlight">Evento</span></h2>
+            <div class="section-divider">
+                <span class="line"></span>
+                <span class="symbol">◆</span>
+                <span class="line"></span>
+            </div>
+        </div>
+
+        <div class="event-details">
+            <div class="detail-card">
+                <span class="icon">📍</span>
+                <h3>Localização</h3>
+                <p class="big-value">Salão Diamante</p>
+                <p>Av. das Estrelas, 1500<br>Bairro Jardim Europa<br>Belo Horizonte - MG</p>
+            </div>
+            <div class="detail-card">
+                <span class="icon">👔</span>
+                <h3>Traje</h3>
+                <p class="big-value">Esporte Fino</p>
+                <p>Venha elegante, mas confortável, para aproveitar cada momento da noite.</p>
+            </div>
+            <div class="detail-card">
+                <span class="icon">🍽️</span>
+                <h3>Cardápio</h3>
+                <p class="big-value">Jantar Completo</p>
+                <p>Entrada, prato principal e sobremesa preparados por chefs renomados.</p>
+            </div>
+            <div class="detail-card">
+                <span class="icon">🎵</span>
+                <h3>Entretenimento</h3>
+                <p class="big-value">Música ao Vivo</p>
+                <p>Banda ao vivo, DJ e pista de dança para você aproveitar até o amanhecer.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTADOR DE CONFIRMADOS -->
+    <section class="section">
+        <div class="section-header">
+            <span class="vibes">Confirmações</span>
+            <h2>Quem já <span class="highlight">confirmou</span></h2>
+            <div class="section-divider">
+                <span class="line"></span>
+                <span class="symbol">◆</span>
+                <span class="line"></span>
+            </div>
+        </div>
+
+        <div class="confirmation-counter">
+            <div class="counter-box">
+                <span class="icon">✅</span>
+                <div class="number" id="confirmedCount">0</div>
+                <div class="label">Confirmados</div>
+            </div>
+            <div class="counter-box">
+                <span class="icon">❌</span>
+                <div class="number" id="declinedCount">0</div>
+                <div class="label">Não vão</div>
+            </div>
+            <div class="counter-box">
+                <span class="icon">👥</span>
+                <div class="number" id="totalGuestsCount">0</div>
+                <div class="label">Total de Pessoas</div>
+            </div>
+            <div class="counter-box">
+                <span class="icon">📊</span>
+                <div class="number" id="pendingCount">0</div>
+                <div class="label">Aguardando</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP FORM -->
+    <section class="section section-dark" id="confirmar">
+        <div class="section-header">
+            <span class="vibes">Confirmação</span>
+            <h2>Confirme sua <span class="highlight">Presença</span></h2>
+            <div class="section-divider">
+                <span class="line"></span>
+                <span class="symbol">◆</span>
+                <span class="line"></span>
+            </div>
+            <p style="color: var(--text-light); opacity: 0.7; max-width: 600px; margin: 20px auto 0;">
+                Sua presença é muito importante para nós. Por favor, confirme até o dia 15 de Dezembro.
+            </p>
+        </div>
+
+        <div class="rsvp-container">
+            <form id="rsvpForm" onsubmit="submitRSVP(event)">
+                <div class="form-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" id="guestName" required placeholder="Como gostaria de ser chamado?">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Telefone/WhatsApp *</label>
+                        <input type="tel" id="guestPhone" required placeholder="(31) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" id="guestEmail" placeholder="seu@email.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Você vai comparecer? *</label>
+                    <div class="attendance-options">
+                        <div class="attendance-option" onclick="selectAttendance(this, 'sim')">
+                            <span class="emoji">🎉</span>
+                            <div class="label">Sim, estarei lá!</div>
+                            <div class="sub">Mal posso esperar</div>
+                        </div>
+                        <div class="attendance-option" onclick="selectAttendance(this, 'nao')">
+                            <span class="emoji">😢</span>
+                            <div class="label">Não poderei ir</div>
+                            <div class="sub">Sentirei sua falta</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="attendance" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Acompanhantes</label>
+                        <select id="companions">
+                            <option value="0">Vou sozinho(a)</option>
+                            <option value="1">+1 acompanhante</option>
+                            <option value="2">+2 acompanhantes</option>
+                            <option value="3">+3 acompanhantes</option>
+                            <option value="4">+4 acompanhantes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Restrição Alimentar</label>
+                        <select id="foodRestriction">
+                            <option value="Nenhuma">Nenhuma</option>
+                            <option value="Vegetariano">Vegetariano</option>
+                            <option value="Vegano">Vegano</option>
+                            <option value="Sem Glúten">Sem Glúten</option>
+                            <option value="Sem Lactose">Sem Lactose</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Mensagem para os anfitriões</label>
+                    <textarea id="guestMessage" placeholder="Deixe uma mensagem carinhosa..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-rsvp" id="submitBtn">
+                    💌 Confirmar Presença
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="section">
+        <div class="section-header">
+            <span class="vibes">Momentos</span>
+            <h2>O que te <span class="highlight">espera</span></h2>
+            <div class="section-divider">
+                <span class="line"></span>
+                <span class="symbol">◆</span>
+                <span class="line"></span>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&h=600&fit=crop" alt="Jantar">
+                <div class="gallery-caption">Jantar Gourmet</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=600&fit=crop" alt="Festa">
+                <div class="gallery-caption">Celebração</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=600&fit=crop" alt="Decoração">
+                <div class="gallery-caption">Decoração Elegante</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=600&h=600&fit=crop" alt="Música">
+                <div class="gallery-caption">Música ao Vivo</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-ornament">◆ ❋ ◆</div>
+        <p>Este convite foi feito com muito carinho <span class="heart">❤️</span> para você</p>
+        <p style="margin-top: 10px;">© 2025 Evento Exclusivo. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- BOTÃO ADMIN -->
+    <button class="admin-toggle" onclick="toggleAdmin()" title="Painel Administrativo">
+        ⚙️
+    </button>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+    <!-- PAINEL ADMIN -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h3>⚙️ Painel Admin</h3>
+            <button class="admin-close" onclick="toggleAdmin()">×</button>
+        </div>
+
+        <div class="admin-stats">
+            <div class="admin-stat">
+                <div class="num" id="adminConfirmed">0</div>
+                <div class="lbl">Confirmados</div>
+            </div>
+            <div class="admin-stat">
+                <div class="num" id="adminDeclined">0</div>
+                <div class="lbl">Recusados</div>
+            </div>
+            <div class="admin-stat">
+                <div class="num" id="adminTotal">0</div>
+                <div class="lbl">Total Pessoas</div>
+            </div>
+        </div>
+
+        <div class="admin-actions">
+            <button class="admin-btn admin-btn-excel" onclick="exportToExcel()">
+                📊 Exportar Excel
+            </button>
+            <button class="admin-btn admin-btn-clear" onclick="clearAllGuests()">
+                🗑️ Limpar Tudo
+            </button>
+        </div>
+
+        <div class="admin-search">
+            <input type="text" id="searchGuests" placeholder="🔍 Buscar convidado..." oninput="renderGuests()">
+        </div>
+
+        <div class="admin-list" id="adminList">
+            <div class="admin-empty">
+                <span class="emoji">📭</span>
+                <p>Nenhuma confirmação ainda</p>
+                <p style="font-size: 0.8rem; margin-top: 5px;">As confirmações aparecerão aqui</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SUCESSO -->
+    <div class="success-modal" id="successModal">
+        <span class="success-icon">🎉</span>
+        <h3 id="successTitle">Presença Confirmada!</h3>
+        <p id="successMessage">Mal podemos esperar para celebrar com você! Enviamos um resumo para o seu WhatsApp.</p>
+        <button class="btn btn-whatsapp" onclick="sendWhatsAppConfirmation()" style="width: 100%; justify-content: center; margin-bottom: 10px;">
+            📱 Enviar Confirmação no WhatsApp
+        </button>
+        <button class="btn btn-outline" onclick="closeSuccessModal()" style="width: 100%; justify-content: center;">
+            Fechar
+        </button>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <span>✅</span>
+        <span id="toastMessage">Feito!</span>
+    </div>
+
+    <script>
+        // ===== CONFIGURAÇÕES DO EVENTO =====
+        const EVENT_CONFIG = {
+            name: "Evento Exclusivo",
+            date: "2025-12-20T20:00:00",
+            dateFormatted: "20 de Dezembro, 2025",
+            time: "20:00h",
+            location: "Salão Diamante",
+            address: "Av. das Estrelas, 1500 - Jardim Europa, BH",
+            whatsappHost: "5531999999999" // Número do anfitrião para receber as confirmações
+        };
+
+        // ===== ESTADO =====
+        let guests = [];
+        let selectedAttendance = '';
+        let lastGuestData = null;
+
+        // ===== LOCAL STORAGE =====
+        function loadGuests() {
+            const stored = localStorage.getItem('eventGuests');
+            if (stored) {
+                guests = JSON.parse(stored);
+            }
+        }
+
+        function saveGuests() {
+            localStorage.setItem('eventGuests', JSON.stringify(guests));
+        }
+
+        // ===== PARTÍCULAS =====
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const icons = ['✨', '⭐', '💫', '🌟', '◆'];
+            
+            // Bolinhas
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 3 + 's';
+                p.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(p);
+            }
+            
+            // Ícones flutuantes
+            for (let i = 0; i < 8; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'sparkle-icon';
+                icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.top = Math.random() * 100 + '%';
+                icon.style.animationDelay = Math.random() * 4 + 's';
+                icon.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                icon.style.opacity = Math.random() * 0.5 + 0.3;
+                container.appendChild(icon);
+            }
+        }
+
+        // ===== COUNTDOWN =====
+        function updateCountdown() {
+            const target = new Date(EVENT_CONFIG.date).getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            if (diff < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // ===== SELECIONAR PRESENÇA =====
+        function selectAttendance(el, value) {
+            document.querySelectorAll('.attendance-option').forEach(opt => opt.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('attendance').value = value;
+            selectedAttendance = value;
+        }
+
+        // ===== SUBMIT RSVP =====
+        function submitRSVP(e) {
+            e.preventDefault();
+
+            if (!selectedAttendance) {
+                showToast('⚠️ Selecione se vai comparecer!');
+                return;
+            }
+
+            const guestData = {
+                id: Date.now(),
+                name: document.getElementById('guestName').value.trim(),
+                phone: document.getElementById('guestPhone').value.trim(),
+                email: document.getElementById('guestEmail').value.trim() || 'Não informado',
+                attendance: selectedAttendance,
+                companions: parseInt(document.getElementById('companions').value),
+                foodRestriction: document.getElementById('foodRestriction').value,
+                message: document.getElementById('guestMessage').value.trim() || 'Sem mensagem',
+                date: new Date().toLocaleString('pt-BR'),
+                timestamp: Date.now()
+            };
+
+            // Verificar duplicata pelo telefone
+            const exists = guests.find(g => g.phone === guestData.phone);
+            if (exists) {
+                if (!confirm('Já existe uma confirmação com este telefone. Deseja substituir?')) {
+                    return;
+                }
+                guests = guests.filter(g => g.phone !== guestData.phone);
+            }
+
+            guests.push(guestData);
+            saveGuests();
+            updateAllStats();
+            renderGuests();
+
+            lastGuestData = guestData;
+
+            // Mostrar modal de sucesso
+            showSuccessModal(guestData);
+
+            // Limpar formulário
+            document.getElementById('rsvpForm').reset();
+            document.querySelectorAll('.attendance-option').forEach(opt => opt.classList.remove('selected'));
+            selectedAttendance = '';
+
+            // Confetes se confirmou presença
+            if (guestData.attendance === 'sim') {
+                createConfetti();
+            }
+        }
+
+        // ===== MOSTRAR MODAL SUCESSO =====
+        function showSuccessModal(data) {
+            const modal = document.getElementById('successModal');
+            const title = document.getElementById('successTitle');
+            const message = document.getElementById('successMessage');
+
+            if (data.attendance === 'sim') {
+                title.textContent = 'Presença Confirmada! 🎉';
+                message.innerHTML = `Que alegria, <strong>${data.name.split(' ')[0]}</strong>!<br>Sua presença foi registrada com sucesso.<br>Enviamos os detalhes para o WhatsApp.`;
+            } else {
+                title.textContent = 'Que pena! 😢';
+                message.innerHTML = `Sentiremos sua falta, <strong>${data.name.split(' ')[0]}</strong>!<br>Obrigado por nos avisar. Você fará falta na celebração.`;
+            }
+
+            modal.classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        // ===== FECHAR MODAL SUCESSO =====
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // ===== ENVIAR WHATSAPP DE CONFIRMAÇÃO =====
+        function sendWhatsAppConfirmation() {
+            if (!lastGuestData) return;
+
+            const g = lastGuestData;
+            let message = '';
+
+            if (g.attendance === 'sim') {
+                message = `🎉 *CONFIRMAÇÃO DE PRESENÇA* 🎉\n\n`;
+                message += `Olá! Confirmo minha presença no evento!\n\n`;
+                message += `👤 *Nome:* ${g.name}\n`;
+                message += `📱 *Telefone:* ${g.phone}\n`;
+                message += `📧 *E-mail:* ${g.email}\n`;
+                message += `✅ *Presença:* CONFIRMADA\n`;
+                message += `👥 *Acompanhantes:* ${g.companions} ${g.companions === 1 ? 'pessoa' : 'pessoas'}\n`;
+                message += `🍽️ *Restrição Alimentar:* ${g.foodRestriction}\n`;
+                if (g.message !== 'Sem mensagem') {
+                    message += `💌 *Mensagem:* ${g.message}\n`;
+                }
+                message += `\n📅 *Data:* ${EVENT_CONFIG.dateFormatted}\n`;
+                message += `🕐 *Horário:* ${EVENT_CONFIG.time}\n`;
+                message += `📍 *Local:* ${EVENT_CONFIG.location}\n\n`;
+                message += `Mal posso esperar para celebrar! ✨`;
+            } else {
+                message = `😢 *RESPOSTA AO CONVITE* 😢\n\n`;
+                message += `Olá! Infelizmente não poderei comparecer.\n\n`;
+                message += `👤 *Nome:* ${g.name}\n`;
+                message += `📱 *Telefone:* ${g.phone}\n`;
+                message += `❌ *Presença:* Não poderei ir\n`;
+                if (g.message !== 'Sem mensagem') {
+                    message += `💌 *Mensagem:* ${g.message}\n`;
+                }
+                message += `\nDesejo um evento maravilhoso! 🎉`;
+            }
+
+            const url = `https://wa.me/${EVENT_CONFIG.whatsappHost}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // ===== RENDERIZAR LISTA DE CONVIDADOS =====
+        function renderGuests() {
+            const list = document.getElementById('adminList');
+            const search = document.getElementById('searchGuests').value.toLowerCase();
+
+            let filtered = guests;
+            if (search) {
+                filtered = guests.filter(g => 
+                    g.name.toLowerCase().includes(search) ||
+                    g.phone.includes(search) ||
+                    g.email.toLowerCase().includes(search)
+                );
+            }
+
+            // Ordenar: confirmados primeiro, depois por data
+            filtered.sort((a, b) => {
+                if (a.attendance === 'sim' && b.attendance !== 'sim') return -1;
+                if (a.attendance !== 'sim' && b.attendance === 'sim') return 1;
+                return b.timestamp - a.timestamp;
+            });
+
+            if (filtered.length === 0) {
+                list.innerHTML = `
+                    <div class="admin-empty">
+                        <span class="emoji">${search ? '🔍' : '📭'}</span>
+                        <p>${search ? 'Nenhum resultado encontrado' : 'Nenhuma confirmação ainda'}</p>
+                        <p style="font-size: 0.8rem; margin-top: 5px;">
+                            ${search ? 'Tente outra busca' : 'As confirmações aparecerão aqui'}
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = filtered.map(g => `
+                <div class="guest-card ${g.attendance === 'sim' ? 'confirmed' : 'declined'}">
+                    <div class="guest-header">
+                        <div class="guest-name">${g.name}</div>
+                        <div class="guest-status ${g.attendance === 'sim' ? 'confirmed' : 'declined'}">
+                            ${g.attendance === 'sim' ? '✓ Confirmado' : '✗ Não vai'}
+                        </div>
+                    </div>
+                    <div class="guest-info">
+                        <span>📱 ${g.phone}</span>
+                        <span>📧 ${g.email}</span>
+                        ${g.attendance === 'sim' ? `
+                            <span>👥 ${g.companions} ${g.companions === 1 ? 'acompanhante' : 'acompanhantes'}</span>
+                            <span>🍽️ ${g.foodRestriction}</span>
+                        ` : ''}
+                        ${g.message !== 'Sem mensagem' ? `<span>💌 "${g.message}"</span>` : ''}
+                        <span style="opacity: 0.5; font-size: 0.75rem;">📅 ${g.date}</span>
+                    </div>
+                    <div class="guest-actions">
+                        <button class="guest-action-btn btn-wpp-guest" onclick="sendGuestWhatsApp(${g.id})">
+                            📱 WhatsApp
+                        </button>
+                        <button class="guest-action-btn btn-delete-guest" onclick="deleteGuest(${g.id})">
+                            🗑️ Remover
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== ENVIAR WHATSAPP PARA UM CONVIDADO =====
+        function sendGuestWhatsApp(id) {
+            const g = guests.find(x => x.id === id);
+            if (!g) return;
+
+            const phone = g.phone.replace(/\D/g, '');
+            const fullPhone = phone.length <= 11 ? '55' + phone : phone;
+
+            let message = '';
+            if (g.attendance === 'sim') {
+                message = `Olá ${g.name.split(' ')[0]}! 🎉\n\n`;
+                message += `Estamos confirmando sua presença no nosso evento!\n\n`;
+                message += `📅 Data: ${EVENT_CONFIG.dateFormatted}\n`;
+                message += `🕐 Horário: ${EVENT_CONFIG.time}\n`;
+                message += `📍 Local: ${EVENT_CONFIG.location}\n`;
+                message += `📍 Endereço: ${EVENT_CONFIG.address}\n\n`;
+                message += `Mal podemos esperar para celebrar com você! ✨`;
+            } else {
+                message = `Olá ${g.name.split(' ')[0]}! 😢\n\n`;
+                message += `Sentimos muito que não poderá comparecer ao nosso evento.\n`;
+                message += `Obrigado por nos avisar!\n\n`;
+                message += `Desejamos tudo de bom! 💛`;
+            }
+
+            const url = `https://wa.me/${fullPhone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // ===== DELETAR CONVIDADO =====
+        function deleteGuest(id) {
+            if (!confirm('Tem certeza que deseja remover esta confirmação?')) return;
+            guests = guests.filter(g => g.id !== id);
+            saveGuests();
+            updateAllStats();
+            renderGuests();
+            showToast('Convidado removido!');
+        }
+
+        // ===== LIMPAR TODOS =====
+        function clearAllGuests() {
+            if (guests.length === 0) {
+                showToast('Nenhuma confirmação para limpar');
+                return;
+            }
+            if (!confirm(`Tem certeza que deseja remover TODAS as ${guests.length} confirmações? Esta ação não pode ser desfeita.`)) return;
+            
+            guests = [];
+            saveGuests();
+            updateAllStats();
+            renderGuests();
+            showToast('Todas as confirmações foram removidas!');
+        }
+
+        // ===== EXPORTAR PARA EXCEL =====
+        function exportToExcel() {
+            if (guests.length === 0) {
+                showToast('⚠️ Nenhum dado para exportar');
+                return;
+            }
+
+            // Criar CSV (compatível com Excel)
+            let csv = '\uFEFF'; // BOM para UTF-8
+            csv += 'Nome;Telefone;E-mail;Presença;Acompanhantes;Total Pessoas;Restrição Alimentar;Mensagem;Data Confirmação\n';
+
+            guests.forEach(g => {
+                const totalPeople = g.attendance === 'sim' ? (1 + g.companions) : 0;
+                const row = [
+                    `"${g.name}"`,
+                    `"${g.phone}"`,
+                    `"${g.email}"`,
+                    g.attendance === 'sim' ? 'CONFIRMADO' : 'NÃO VAI',
+                    g.companions,
+                    totalPeople,
+                    `"${g.foodRestriction}"`,
+                    `"${g.message.replace(/"/g, '""')}"`,
+                    `"${g.date}"`
+                ];
+                csv += row.join(';') + '\n';
+            });
+
+            // Adicionar linha de totais
+            const confirmed = guests.filter(g => g.attendance === 'sim');
+            const totalPeople = confirmed.reduce((sum, g) => sum + 1 + g.companions, 0);
+            csv += '\n';
+            csv += `"RESUMO";"Total Confirmados: ${confirmed.length}";"Total Pessoas: ${totalPeople}";"Total Recusas: ${guests.length - confirmed.length}"\n`;
+
+            // Criar arquivo
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            const now = new Date();
+            const filename = `confirmacoes_evento_${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}.csv`;
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast('📊 Relatório exportado com sucesso!');
+        }
+
+        // ===== ATUALIZAR ESTATÍSTICAS =====
+        function updateAllStats() {
+            const confirmed = guests.filter(g => g.attendance === 'sim');
+            const declined = guests.filter(g => g.attendance === 'nao');
+            const totalPeople = confirmed.reduce((sum, g) => sum + 1 + g.companions, 0);
+
+            // Contadores principais
+            document.getElementById('confirmedCount').textContent = confirmed.length;
+            document.getElementById('declinedCount').textContent = declined.length;
+            document.getElementById('totalGuestsCount').textContent = totalPeople;
+            document.getElementById('pendingCount').textContent = 0;
+
+            // Contadores admin
+            document.getElementById('adminConfirmed').textContent = confirmed.length;
+            document.getElementById('adminDeclined').textContent = declined.length;
+            document.getElementById('adminTotal').textContent = totalPeople;
+        }
+
+        // ===== TOGGLE ADMIN =====
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            const overlay = document.getElementById('overlay');
+            
+            panel.classList.toggle('open');
+            overlay.classList.toggle('active');
+            renderGuests();
+        }
+
+        // ===== FECHAR TUDO =====
+        function closeAll() {
+            document.getElementById('adminPanel').classList.remove('open');
+            document.getElementById('successModal').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // ===== TOAST =====
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ===== CONFETES =====
+        function createConfetti() {
+            const colors = ['#d4af37', '#f4e4a8', '#e8b4b8', '#c98b90', '#25d366', '#ffffff'];
+            const shapes = ['■', '●', '◆', '★', '✦'];
+            
+            for (let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '50%';
+                } else {
+                    confetti.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+                    confetti.style.background = 'transparent';
+                    confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.fontSize = '1.5rem';
+                }
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // ===== INICIALIZAR =====
+        function init() {
+            loadGuests();
+            createParticles();
+            updateAllStats();
+            renderGuests();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Preencher data do evento
+            document.getElementById('eventDate').textContent = EVENT_CONFIG.dateFormatted;
+            document.getElementById('eventTime').textContent = EVENT_CONFIG.time;
+            document.getElementById('eventLocation').textContent = EVENT_CONFIG.location;
+        }
+
+        // ===== TECLA ESC PARA FECHAR =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAll();
+        });
+
+        // Iniciar
+        init();
+    </script>
+</body>
+</html>
